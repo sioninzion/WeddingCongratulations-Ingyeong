@@ -642,5 +642,27 @@ const members = [
     "afterImageAlt": "",
     "pinnedInChats": false,
     "avatarSrc": "assets/profiles/letter-kim-jaehoon.png?v=31df5f6d78f8"
+  },
+  {
+    "id": "letter-kim-jiwon",
+    "name": "김지원",
+    "group": "sop",
+    "sentAt": "",
+    "dateLabel": "",
+    "shortDate": "",
+    "timeLabel": "",
+    "congrats": [
+      "인경 언니 결혼 축하 드려용!!😆🤍\n뒤나미스에서 뵐 때마다 늘 밝은 미소로 따뜻하게 인사해주셔서 너무 감사했어요 ㅎㅎ 복을 주실 하나님 안에서 사랑이 넘치고 아름다운 가정 이루시기를 축복하고 기도하겠습니다!!"
+    ],
+    "verseText": "여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그의 얼굴을 네게 비추사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라",
+    "verseRef": "민수기 6:24-26",
+    "verseNote": "",
+    "afterVerse": [
+      "결혼 축하드려요~!! 복된 가정 되시기를 축복하겠습니다💕"
+    ],
+    "afterImage": "",
+    "afterImageAlt": "",
+    "pinnedInChats": false,
+    "avatarSrc": "assets/profiles/letter-kim-jiwon.png?v=a25f09fb10ce"
   }
 ];
