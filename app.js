@@ -81,7 +81,7 @@ function makeAdvertisement() {
   const icon = element('span', 'ad-icon');
   icon.append(makeIcon('announcement'));
   const copy = element('span', 'ad-copy');
-  copy.append(element('span', 'ad-title', '결혼하는 사람이 그렇게 예쁘다던데?'));
+  copy.append(element('span', 'ad-title', '10월 9일에 결혼하는 사람이 그렇게 예쁘다던데?'));
   copy.append(element('span', 'ad-sub', '누군지 알아보러 가기'));
   ad.append(icon, copy, element('span', 'ad-tag', '광고'));
   ad.addEventListener('click', () => adDialog.showModal());
