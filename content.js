@@ -1,5 +1,5 @@
 // 카카오톡에서 추린 25명의 메시지와 별도로 전달받은 편지입니다.
-// 원문을 유지하며, 작성 시각이 제공되지 않은 편지는 날짜와 시간을 표시하지 않습니다.
+// 원문을 유지하며, 날짜 없는 편지에는 요청에 따라 10월 1일 또는 2일을 고정 배정했습니다. 시간도 무작위로 고정 배정했으며 실제 작성 시각을 뜻하지 않습니다.
 const siteContent = {
   "title": "결혼을 축하해요!",
   "subtitle": "뒤나미스의 마음을 모아,",
@@ -559,10 +559,10 @@ const members = [
     "id": "letter-noh-sion",
     "name": "노시온",
     "group": "bas",
-    "sentAt": "",
-    "dateLabel": "",
-    "shortDate": "",
-    "timeLabel": "",
+    "sentAt": "2026-10-02 17:33:00",
+    "dateLabel": "2026년 10월 2일 금요일",
+    "shortDate": "10월 2일",
+    "timeLabel": "오후 5:33",
     "congrats": [
       "인경누님 좋은 아침, 좋은 오후, 좋은 밤 보내고 계신가요?\n언제나 밝은 미소로 뒤나미스를 섬겨 주셔서 감사해요! 결혼 진심으로 축하드리고, 누님의 앞으로의 인생 가운데에 주님 안에서 화목한 가정이 될 수 있기를 기도할게요.😊\n인생 선배로써, 뒤나미스 선배로써 앞으로 잘 부탁드립니다~!~!"
     ],
@@ -581,10 +581,10 @@ const members = [
     "id": "letter-oh-jaewook",
     "name": "오재욱 대장님",
     "group": "🎶",
-    "sentAt": "",
-    "dateLabel": "",
-    "shortDate": "",
-    "timeLabel": "",
+    "sentAt": "2026-10-02 14:02:00",
+    "dateLabel": "2026년 10월 2일 금요일",
+    "shortDate": "10월 2일",
+    "timeLabel": "오후 2:02",
     "congrats": [
       "결혼을 축하합니다. 하나님안에서 늘 행복하고 예수님과 늘 동행하며 성령충만한 가정을 이루길 기도합니다."
     ],
@@ -603,10 +603,10 @@ const members = [
     "id": "letter-lee-hyeongjun",
     "name": "이형준",
     "group": "ten",
-    "sentAt": "",
-    "dateLabel": "",
-    "shortDate": "",
-    "timeLabel": "",
+    "sentAt": "2026-10-01 13:24:00",
+    "dateLabel": "2026년 10월 1일 목요일",
+    "shortDate": "10월 1일",
+    "timeLabel": "오후 1:24",
     "congrats": [
       "안녕하세요! 결혼 정말 축하드립니다!!\n늘 밝은 미소를 장착하고 계시는 인경 누나 그 미소처럼 항상 행복한 가정 이루세요!! 결혼 생활 속에서 사랑이 가득하기를 기도할게요! 정말 축하드립니다!"
     ],
@@ -625,10 +625,10 @@ const members = [
     "id": "letter-kim-jaehoon",
     "name": "김재훈",
     "group": "ten",
-    "sentAt": "",
-    "dateLabel": "",
-    "shortDate": "",
-    "timeLabel": "",
+    "sentAt": "2026-10-02 19:36:00",
+    "dateLabel": "2026년 10월 2일 금요일",
+    "shortDate": "10월 2일",
+    "timeLabel": "오후 7:36",
     "congrats": [
       "인경누나 결혼 축하드려요! 두 분이 함께 그려나갈 새로운 시작을 축복합니다. 앞으로 서로에게 가장 든든한 내 편이 되어주며, 매일매일 사랑과 웃음이 넘치는 따뜻한 가정 이루시기를 진심으로 기도할게요. 정말 축하드립니다!"
     ],
@@ -647,10 +647,10 @@ const members = [
     "id": "letter-kim-jiwon",
     "name": "김지원",
     "group": "sop",
-    "sentAt": "",
-    "dateLabel": "",
-    "shortDate": "",
-    "timeLabel": "",
+    "sentAt": "2026-10-02 05:41:00",
+    "dateLabel": "2026년 10월 2일 금요일",
+    "shortDate": "10월 2일",
+    "timeLabel": "오전 5:41",
     "congrats": [
       "인경 언니 결혼 축하 드려용!!😆🤍\n뒤나미스에서 뵐 때마다 늘 밝은 미소로 따뜻하게 인사해주셔서 너무 감사했어요 ㅎㅎ 복을 주실 하나님 안에서 사랑이 넘치고 아름다운 가정 이루시기를 축복하고 기도하겠습니다!!"
     ],
