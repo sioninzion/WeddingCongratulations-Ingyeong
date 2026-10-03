@@ -598,5 +598,27 @@ const members = [
     "afterImageAlt": "",
     "pinnedInChats": true,
     "avatarSrc": "assets/profiles/letter-oh-jaewook.png?v=7575ae08bca8"
+  },
+  {
+    "id": "letter-lee-hyeongjun",
+    "name": "이형준",
+    "group": "ten",
+    "sentAt": "",
+    "dateLabel": "",
+    "shortDate": "",
+    "timeLabel": "",
+    "congrats": [
+      "안녕하세요! 결혼 정말 축하드립니다!!\n늘 밝은 미소를 장착하고 계시는 인경 누나 그 미소처럼 항상 행복한 가정 이루세요!! 결혼 생활 속에서 사랑이 가득하기를 기도할게요! 정말 축하드립니다!"
+    ],
+    "verseText": "사람이 한 사람보다 나음은 그들이 수고함으로 좋은 상을 얻을 것임이라 혹시 그들이 넘어지면 하나가 그 동무를 붙들어 일으키려니와",
+    "verseRef": "전도서 4장 9-10절",
+    "verseNote": "",
+    "afterVerse": [
+      "결혼 축하드립니다🎉 행복한 가정 되기시를 기도하겠습니다!!"
+    ],
+    "afterImage": "",
+    "afterImageAlt": "",
+    "pinnedInChats": false,
+    "avatarSrc": "assets/profiles/letter-lee-hyeongjun.png?v=b7e8b1b9302a"
   }
 ];
