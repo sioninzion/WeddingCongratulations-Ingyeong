@@ -1,4 +1,4 @@
-// 카카오톡에서 추린 25명의 메시지와 별도로 전달받은 노시온의 편지입니다.
+// 카카오톡에서 추린 25명의 메시지와 별도로 전달받은 편지입니다.
 // 원문을 유지하며, 작성 시각이 제공되지 않은 편지는 날짜와 시간을 표시하지 않습니다.
 const siteContent = {
   "title": "결혼을 축하해요!",
@@ -576,5 +576,27 @@ const members = [
     "afterImageAlt": "",
     "pinnedInChats": false,
     "avatarSrc": "assets/profiles/letter-noh-sion.png?v=373cfc4cb38f"
+  },
+  {
+    "id": "letter-oh-jaewook",
+    "name": "오재욱 대장님",
+    "group": "🎶",
+    "sentAt": "",
+    "dateLabel": "",
+    "shortDate": "",
+    "timeLabel": "",
+    "congrats": [
+      "결혼을 축하합니다. 하나님안에서 늘 행복하고 예수님과 늘 동행하며 성령충만한 가정을 이루길 기도합니다."
+    ],
+    "verseText": "1 여호와께서 시온의 포로를 돌려 보내실 때에 우리는 꿈꾸는 것 같았도다\n2 그 때에 우리 입에는 웃음이 가득하고 우리 혀에는 찬양이 찼었도다 그 때에 뭇 나라 가운데에서 말하기를 여호와께서 그들을 위하여 큰 일을 행하셨다 하였도다\n3 여호와께서 우리를 위하여 큰 일을 행하셨으니 우리는 기쁘도다\n4 여호와여 우리의 포로를 남방 시내들 같이 돌려 보내소서\n5 눈물을 흘리며 씨를 뿌리는 자는 기쁨으로 거두리로다\n6 울며 씨를 뿌리러 나가는 자는 반드시 기쁨으로 그 곡식 단을 가지고 돌아오리로다",
+    "verseRef": "시편 126:1-6\n시편 128편 1~6절",
+    "verseNote": "",
+    "afterVerse": [
+      "브리스길라와 아굴라 처럼 주님께 쓰임 받는 가정되길 바랍니다."
+    ],
+    "afterImage": "",
+    "afterImageAlt": "",
+    "pinnedInChats": true,
+    "avatarSrc": "assets/profiles/letter-oh-jaewook.png?v=7575ae08bca8"
   }
 ];
