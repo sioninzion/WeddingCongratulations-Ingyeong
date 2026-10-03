@@ -176,7 +176,7 @@ function switchHomeView(view) {
   }
 }
 
-const typingInterval = 400;
+const typingInterval = 12;
 const graphemeSegmenter = new Intl.Segmenter('ko', { granularity: 'grapheme' });
 let typingTimer;
 let typingBubbles = [];
