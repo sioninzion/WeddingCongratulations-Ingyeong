@@ -10,7 +10,7 @@ const messages = document.getElementById('msgs');
 const dialog = document.getElementById('vp');
 const envelope = document.getElementById('env-ov');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const states = members.map(() => ({ opened: false, received: false, revealed: false }));
+const states = members.map(() => ({ opened: false, received: false, revealed: false, typing: {} }));
 let currentIndex = -1;
 let verseTimer;
 let listScrollTop = 0;
@@ -176,9 +176,49 @@ function switchHomeView(view) {
   }
 }
 
-function addTextMessage(group, text, time) {
+const typingInterval = 400;
+const graphemeSegmenter = new Intl.Segmenter('ko', { granularity: 'grapheme' });
+let typingTimer;
+let typingBubbles = [];
+
+function stopTyping() {
+  clearInterval(typingTimer);
+  typingBubbles = [];
+}
+
+function startTyping() {
+  if (!typingBubbles.some(({ characters, progress }) => progress.count < characters.length)) return;
+  typingTimer = setInterval(() => {
+    // Preserve progress while a verse is open or the page is in the background.
+    if (currentIndex < 0 || room.inert || dialog.open || document.hidden) return;
+    const advancedGroups = new Set();
+    for (const { characters, progress, phase } of typingBubbles) {
+      if (progress.count >= characters.length || advancedGroups.has(phase)) continue;
+      characters[progress.count++].classList.add('is-visible');
+      advancedGroups.add(phase);
+    }
+    if (typingBubbles.every(({ characters, progress }) => progress.count >= characters.length)) {
+      clearInterval(typingTimer);
+    }
+  }, typingInterval);
+}
+
+function addTextMessage(group, text, time, progress, phase) {
   const line = element('div', 'bline');
-  line.append(element('p', 'bubble', text));
+  const bubble = element('p', 'bubble');
+  // Hidden glyphs still occupy their final space, so the bubble never grows.
+  const visual = element('span', 'typing-text');
+  visual.setAttribute('aria-hidden', 'true');
+  const characters = Array.from(graphemeSegmenter.segment(text), ({ segment }) =>
+    element('span', 'typing-character', segment));
+  if (reducedMotion.matches) progress.count = characters.length;
+  characters.forEach((character, index) => {
+    if (index < progress.count) character.classList.add('is-visible');
+    visual.append(character);
+  });
+  bubble.append(element('span', 'sr-only', text), visual);
+  typingBubbles.push({ characters, progress, phase });
+  line.append(bubble);
   if (time) line.append(element('span', 'btime', time));
   group.append(line);
 }
@@ -190,13 +230,15 @@ function messageGroup(member, extraClass = '') {
   return group;
 }
 
-function renderMessages(index, animateFollowup = false) {
+function renderMessages(index) {
+  stopTyping();
   const member = members[index];
   const state = states[index];
   messages.replaceChildren();
   if (member.dateLabel) messages.append(element('p', 'date-div', member.dateLabel));
   const greeting = messageGroup(member);
-  member.congrats.forEach(text => addTextMessage(greeting, text, member.timeLabel));
+  member.congrats.forEach((text, i) => addTextMessage(greeting, text, member.timeLabel,
+    state.typing[`greeting-${i}`] ??= { count: 0 }, 'greeting'));
   messages.append(greeting);
 
   if (hasVerse(member)) {
@@ -220,8 +262,9 @@ function renderMessages(index, animateFollowup = false) {
 
   const showFollowup = state.revealed || !hasVerse(member);
   if (showFollowup && (member.afterVerse.length || member.afterImage)) {
-    const followup = messageGroup(member, `followup${animateFollowup ? ' new' : ''}`);
-    member.afterVerse.forEach(text => addTextMessage(followup, text, member.timeLabel));
+    const followup = messageGroup(member, 'followup');
+    member.afterVerse.forEach((text, i) => addTextMessage(followup, text, member.timeLabel,
+      state.typing[`followup-${i}`] ??= { count: 0 }, 'followup'));
     if (member.afterImage) {
       const line = element('div', 'bline');
       const bubble = element('div', 'photo-bubble');
@@ -236,6 +279,7 @@ function renderMessages(index, animateFollowup = false) {
     }
     messages.append(followup);
   }
+  startTyping();
 }
 
 function openRoom(index) {
@@ -260,6 +304,7 @@ function openRoom(index) {
 }
 
 function goBack() {
+  stopTyping();
   resetRoomSwipe();
   const previousIndex = currentIndex;
   currentIndex = -1;
@@ -311,7 +356,7 @@ dialog.addEventListener('close', () => {
   const reveal = !state.revealed;
   const savedScroll = messages.scrollTop;
   state.revealed = true;
-  renderMessages(currentIndex, reveal);
+  renderMessages(currentIndex);
   room.inert = false;
   const followup = messages.querySelector('.followup');
   if (reveal && followup) {

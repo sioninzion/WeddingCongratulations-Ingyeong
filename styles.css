@@ -129,6 +129,8 @@ body { display: flex; justify-content: center; background: #17191a; }
 .verse-line { margin-left: var(--avatar-indent); }
 .bline { display: flex; align-items: flex-end; gap: 6px; max-width: 100%; }
 .bubble { min-width: 0; max-width: 288px; background: #fff; border-radius: 3px 16px 16px 16px; padding: 12px 14px; font-size: 1rem; line-height: 1.7; white-space: pre-wrap; word-break: keep-all; overflow-wrap: anywhere; }
+.typing-character { visibility: hidden; }
+.typing-character.is-visible { visibility: visible; }
 .btime { flex-shrink: 0; color: #426161; font-size: .6875rem; white-space: nowrap; padding-bottom: 3px; }
 .room-footer { flex-shrink: 0; padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid #0000000a; background: var(--surface); }
 .room-keepsake { padding: 12px; border: 1px solid #ededed; border-radius: 17px; background: #f7f7f7; color: #777; font-size: .875rem; line-height: 1.5; text-align: center; word-break: keep-all; }
@@ -145,8 +147,6 @@ body { display: flex; justify-content: center; background: #17191a; }
 .sys-msg { align-self: flex-start; margin-left: var(--avatar-indent); border-radius: 15px; padding: 6px 11px; background: #ffffff55; color: #365050; font-size: .8125rem; }
 .photo-bubble { min-width: 0; flex: 0 1 280px; overflow: hidden; border-radius: 3px 14px 14px 14px; background: #fff; }
 .photo-bubble img { width: 100%; height: auto; display: block; }
-.followup.new { animation: arrive .3s ease-out; }
-@keyframes arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 #env-ov { position: absolute; inset: 0; z-index: 30; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity .25s; display: flex; align-items: flex-end; }
 #env-ov.show { opacity: 1; pointer-events: auto; }
 .env-bd { position: absolute; inset: 0; background: #0005; }
