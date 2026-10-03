@@ -240,6 +240,7 @@ function renderMessages(index, animateFollowup = false) {
 
 function openRoom(index) {
   if (!members[index]) return;
+  resetRoomSwipe();
   closeVolume();
   listScrollTop = listItems.scrollTop;
   currentIndex = index;
@@ -259,6 +260,7 @@ function openRoom(index) {
 }
 
 function goBack() {
+  resetRoomSwipe();
   const previousIndex = currentIndex;
   currentIndex = -1;
   clearTimeout(verseTimer);
@@ -331,18 +333,79 @@ document.addEventListener('keydown', event => {
   goBack();
 });
 
-// Keep the original horizontal swipe back; vertical reading gestures remain unaffected.
-let touchStart;
+// Horizontal room gestures belong to the app; vertical reading stays native.
+let roomSwipe = null;
+function resetRoomSwipe() {
+  roomSwipe = null;
+}
+
 room.addEventListener('touchstart', event => {
-  touchStart = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+  resetRoomSwipe();
+  if (event.touches.length !== 1 || currentIndex < 0 || dialog.open || room.inert) return;
+  const touch = event.touches[0];
+  roomSwipe = { id: touch.identifier, x: touch.clientX, y: touch.clientY, horizontal: false };
 }, { passive: true });
+
+room.addEventListener('touchmove', event => {
+  if (!roomSwipe) return;
+  if (event.touches.length !== 1 || dialog.open || room.inert) {
+    resetRoomSwipe();
+    return;
+  }
+  const touch = Array.from(event.touches).find(item => item.identifier === roomSwipe.id);
+  if (!touch) {
+    resetRoomSwipe();
+    return;
+  }
+  const dx = touch.clientX - roomSwipe.x;
+  const dy = Math.abs(touch.clientY - roomSwipe.y);
+  if (!roomSwipe.horizontal) {
+    if (dx < -12 || (dy > 12 && dy >= Math.abs(dx))) {
+      resetRoomSwipe();
+      return;
+    }
+    if (dx > 12 && dx > dy * 1.5) roomSwipe.horizontal = true;
+  }
+  if (roomSwipe.horizontal && event.cancelable) event.preventDefault();
+}, { passive: false });
+
 room.addEventListener('touchend', event => {
-  if (!touchStart || dialog.open || room.inert) return;
-  const dx = event.changedTouches[0].clientX - touchStart.x;
-  const dy = Math.abs(event.changedTouches[0].clientY - touchStart.y);
-  if (dx > 90 && dy < 45) goBack();
-  touchStart = null;
-}, { passive: true });
+  const swipe = roomSwipe;
+  resetRoomSwipe();
+  if (!swipe || event.touches.length || currentIndex < 0 || dialog.open || room.inert) return;
+  const touch = Array.from(event.changedTouches).find(item => item.identifier === swipe.id);
+  if (!touch) return;
+  const dx = touch.clientX - swipe.x;
+  const dy = Math.abs(touch.clientY - swipe.y);
+  const threshold = Math.min(72, room.clientWidth * .22);
+  if (dx >= threshold && dx > dy * 1.5 && dy < 80) {
+    if (event.cancelable) event.preventDefault();
+    switchHomeView('chats');
+    goBack();
+  }
+}, { passive: false });
+room.addEventListener('touchcancel', resetRoomSwipe, { passive: true });
+
+// Keep the app at its designed scale, including WebKit and trackpad gestures.
+const preventPageZoom = event => {
+  if (event.cancelable) event.preventDefault();
+};
+for (const type of ['gesturestart', 'gesturechange', 'gestureend']) {
+  document.addEventListener(type, preventPageZoom, { passive: false });
+}
+document.addEventListener('touchmove', event => {
+  if (event.touches.length > 1) {
+    resetRoomSwipe();
+    preventPageZoom(event);
+  }
+}, { passive: false });
+document.addEventListener('wheel', event => {
+  if (event.ctrlKey) preventPageZoom(event);
+}, { passive: false });
+document.addEventListener('keydown', event => {
+  if ((event.ctrlKey || event.metaKey) && ['+', '=', '-', '_'].includes(event.key)) preventPageZoom(event);
+});
+document.querySelector('.bottom-nav').addEventListener('dblclick', preventPageZoom);
 
 // The sound button is a popover, not another app screen.
 const volumePanel = document.getElementById('volume-panel');
