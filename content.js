@@ -620,5 +620,27 @@ const members = [
     "afterImageAlt": "",
     "pinnedInChats": false,
     "avatarSrc": "assets/profiles/letter-lee-hyeongjun.png?v=b7e8b1b9302a"
+  },
+  {
+    "id": "letter-kim-jaehoon",
+    "name": "김재훈",
+    "group": "ten",
+    "sentAt": "",
+    "dateLabel": "",
+    "shortDate": "",
+    "timeLabel": "",
+    "congrats": [
+      "인경누나 결혼 축하드려요! 두 분이 함께 그려나갈 새로운 시작을 축복합니다. 앞으로 서로에게 가장 든든한 내 편이 되어주며, 매일매일 사랑과 웃음이 넘치는 따뜻한 가정 이루시기를 진심으로 기도할게요. 정말 축하드립니다!"
+    ],
+    "verseText": "사랑하는 자여 네 영혼이 잘됨 같이 네가 범사에 잘되고 강건하기를 내가 간구하노라",
+    "verseRef": "요한3서 1장 2절",
+    "verseNote": "",
+    "afterVerse": [
+      "말씀처럼 두 분의 영혼이 잘됨 같이, 앞으로의 모든 일에 축복이 가득하고 늘 건강한 가정이 되기를 진심으로 기도하겠습니다!! 🎉"
+    ],
+    "afterImage": "",
+    "afterImageAlt": "",
+    "pinnedInChats": false,
+    "avatarSrc": "assets/profiles/letter-kim-jaehoon.png?v=31df5f6d78f8"
   }
 ];
